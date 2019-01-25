@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Page Title</title>
+</head>
+<body>
+  <div id="container">
+    <button id="1" class="but" onclick="game('Rock',computerPlay())">Rock</button>
+    <button id="2" class="but" onclick="game('Paper',computerPlay())">Paper</button>
+    <button id="3" class="but" onclick="game('Scissors',computerPlay())">Scissors</button>
+    <p id="human-win" class="scores">Human Victories: 0</p>
+    <p id="comp-win" class="scores">Machine Victories: 0</p>
+    <p id="draw" class="scores">Ties: 0</p>
+    <p id="message" class="scores">Choose wisely...</p>
+</div>
+
+
+<script>
+  // cache le DOM
+  const rock = document.getElementById('1');
+  const paper = document.getElementById('2');
+  const scissors = document.getElementById('3');
+  const message = document.getElementById('message');
+  let human_win = document.getElementById('human-win');
+  let comp_win = document.getElementById('comp-win');
+  let ties = document.getElementById('draw');
+
+var machineVictories = 0;
+var userVictories = 0;
+var draws = 0;
+
+  // computer choice
+  function computerPlay() {
+              var compChoice = ["Rock", "Paper", "Scissors"];
+              let num = Math.floor(Math.random() * 3);
+              let compSel = compChoice[num];
+              return compSel;
+              console.log(compSel);
+            }
+
+// game
+function game(userChoice, computerChoice) {
+    console.log(userChoice);
+    console.log(computerChoice);
+
+    if (userChoice == "Rock" && computerChoice == "Scissors" || userChoice == "Paper" && computerChoice == "Rock" || userChoice == "Scissors" && computerChoice == "Paper") {
+      message.innerHTML = 'You win, ' + userChoice + ' beats ' + computerChoice;
+      console.log(message);
+      userVictories++;
+    }
+    else if (userChoice == "Rock" && computerChoice == "Paper" || userChoice == "Paper" && computerChoice == "Scissors" || userChoice == "Scissors" && computerChoice == "Rock") {
+      message.innerHTML = 'You Lose, ' + computerChoice + ' beats ' + userChoice;
+      machineVictories++;
+    } else {
+      draws++;
+      message.innerHTML = 'It is a tie...';
+    }
+
+    score();
+}
+function score() {
+  human_win.innerHTML = "Human Victories: " + userVictories;
+  comp_win.innerHTML = "Machine Victories: " + machineVictories;
+  ties.innerHTML = "Ties: " + draws;
+}
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
+<style>
+#message {
+font-size: 50px;
+font-weight: 900;
+color: red;
+font-family: sans-serif;
+text-align: center;
+
+}
+.scores {
+
+  font-size: 30px;
+  font-weight: 600;
+  color: blue;
+  font-family: sans-serif;
+  transition: .3s;
+
+
+}
+button {
+  background-color: #f34f34;
+  padding: 50px;
+  margin-left: 2vw;
+  width: 250px;
+  height: 100px;
+  color: white;
+  font-family: sans-serif;
+  font-size: 25px;
+  text-align: center;
+}
+</style>
